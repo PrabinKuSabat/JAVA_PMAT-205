@@ -5,7 +5,7 @@ public class Circle{
     private static int count = 0;
 
     public Circle(){
-        radius = Validator1.getDouble("Please Enter the Radius:");
+        radius = Validator.getDouble("Please Enter the Radius:");
         count++;
     }
 
@@ -14,14 +14,18 @@ public class Circle{
     }
 
     public String getFormattedCircumference(){
-        return NumberFormat.getInstance().format(getCircumference());
+        NumberFormat nf = NumberFormat.getInstance();
+        nf.setMaximumFractionDigits(2);
+        return nf.format(getCircumference());
     }
     public double getArea(){
         return java.lang.Math.PI*radius*radius;
     }
 
     public String getFormattedArea(){
-        return NumberFormat.getInstance().format(getArea());
+        NumberFormat nf = NumberFormat.getInstance();
+        nf.setMaximumFractionDigits(2);
+        return nf.format(getArea());
     }
 
     public static int getObjectCount(){
