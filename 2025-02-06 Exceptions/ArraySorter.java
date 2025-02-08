@@ -19,18 +19,10 @@ public class ArraySorter{
     }
 
     public void getSorted(){
-        try {
+
             int[] sort10 = Arrays.copyOfRange(array, 0, 10);
             Arrays.sort(sort10);
             System.arraycopy(sort10,0,array,0,10);
-        } catch (IndexOutOfBoundsException I) {
-            System.err.println("Error: Index out of bound Exception thrown in getSorted method.");
-        }
-        catch(IllegalArgumentException A ){
-            System.err.println("Error: Illegal Argument Exception in getSorted method.");
-        }
-        catch(NullPointerException N ){
-            System.err.println("Error: Null Pointer detected in getSorted. One of the arrays is pointing to null.");
-        }
+
     }
 }

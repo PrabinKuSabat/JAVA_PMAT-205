@@ -6,23 +6,30 @@ public class TestSorter {
         if(args.length > 0) {
             try {
                 maxRange = Integer.parseInt(args[0]);
+
+                sorter = new ArraySorter(maxRange);
             } catch(NumberFormatException nfe) {
                 System.err.println("Error: Provided argument '" + args[0] + "' is not a valid integer.");
                 nfe.printStackTrace();
+            }
+            try {
+                sorter = new ArraySorter();
+            } catch(IllegalArgumentException iae) {
+                System.err.println("Error during ArraySorter creation: " + iae.getMessage());
+                iae.printStackTrace();
                 return;
             }
         }
-
-        try {
-            int uInput;
-            uInput = Validator.getInt("Please enter the maximum range limit:");
-            sorter = new ArraySorter();
-        } catch(IllegalArgumentException iae) {
-            System.err.println("Error during ArraySorter creation: " + iae.getMessage());
-            iae.printStackTrace();
-            return;
+        else{
+            try {
+                sorter = new ArraySorter();
+            } catch(IllegalArgumentException iae) {
+                System.err.println("Error during ArraySorter creation: " + iae.getMessage());
+                iae.printStackTrace();
+                return;
+            }
         }
-
+        
         try {
             sorter.getSorted();
         } catch(Exception e) {
@@ -42,10 +49,16 @@ public class TestSorter {
         System.out.println("\n");
 
         // Forcing Exceptions
-        // 1. Force a NullPointerException: Dispose (null out) the array and then call getSorted.
+        // 1. Force a NullPointerException: Dispose the array and then call getSorted.
         sorter.array = null;
         try {
             sorter.getSorted();
+        } catch ( MyOwnException moe){
+            System.err.println("Forced MyOwnException caught.");
+            moe.printStackTrace();
+        } catch (IllegalArgumentException iae) {
+            System.err.println("Forced IllegalArgumentException caught.");
+            iae.printStackTrace();
         } catch(NullPointerException npe) {
             System.err.println("Forced NullPointerException caught:");
             npe.printStackTrace();
@@ -57,12 +70,15 @@ public class TestSorter {
         try {
             sorter.getSorted();
         } catch(IndexOutOfBoundsException ioobe) {
-            System.err.println("Forced IndexOutOfBoundsException caught:");
+            System.err.println("Forced IndexOutOfBoundsException caught.");
             ioobe.printStackTrace();
+        } catch (MyOwnException moe) {
+            System.err.println("Forced MyOwnException caught."); 
+            moe.printStackTrace();
         }
 
         // Finally, dispose of the array.
-        sorter.array = null;
+        // sorter.array = null;
         System.out.println("Array disposed.");
     }
 }

@@ -7,7 +7,7 @@ public class ProductApp {
     public static void main(String[] var){
         String uInput;
         int index = 0 ;
-        Product [] productArray = new Product[10];
+        Product [] productArray = new Product[1];
 
         do {
             Product product; 
@@ -22,24 +22,20 @@ public class ProductApp {
                 index++;
             }
            uInput = Validator.getString("Do you want to continue? (y/n) ");
-        } while( uInput.equalsIgnoreCase("y") && index < (productArray.length - 1) );
+        } while( uInput.equalsIgnoreCase("y") && index < (productArray.length) );
 
-        if ( (index + 1) >= productArray.length ) {
+        if ( (index) >= productArray.length ) {
             System.out.println("Max no. of attempts accomplished.");
         }
 
-        System.out.println("Hii");
         if(index != 0){
-            System.out.println(index);
             Arrays.sort(productArray, 0, index);
         }
-        System.out.println("Bye");
 
         int count = 0;
         for( Product elements : productArray){
             count ++;
             if ( elements == null ) {
-                System.out.println("Null");
                 break;
             }
             else{

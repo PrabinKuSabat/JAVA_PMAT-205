@@ -6,21 +6,28 @@ public class TestSorter {
         if(args.length > 0) {
             try {
                 maxRange = Integer.parseInt(args[0]);
+
+                sorter = new ArraySorter(maxRange);
             } catch(NumberFormatException nfe) {
                 System.err.println("Error: Provided argument '" + args[0] + "' is not a valid integer.");
                 nfe.printStackTrace();
+            }
+            try {
+                sorter = new ArraySorter();
+            } catch(IllegalArgumentException iae) {
+                System.err.println("Error during ArraySorter creation: " + iae.getMessage());
+                iae.printStackTrace();
                 return;
             }
         }
-
-        try {
-            int uInput;
-            uInput = Validator.getInt("Please enter the maximum range limit:");
-            sorter = new ArraySorter();
-        } catch(IllegalArgumentException iae) {
-            System.err.println("Error during ArraySorter creation: " + iae.getMessage());
-            iae.printStackTrace();
-            return;
+        else{
+            try {
+                sorter = new ArraySorter();
+            } catch(IllegalArgumentException iae) {
+                System.err.println("Error during ArraySorter creation: " + iae.getMessage());
+                iae.printStackTrace();
+                return;
+            }
         }
 
         try {
@@ -43,26 +50,26 @@ public class TestSorter {
 
         // Forcing Exceptions
         // 1. Force a NullPointerException: Dispose (null out) the array and then call getSorted.
-        sorter.array = null;
-        try {
-            sorter.getSorted();
-        } catch(NullPointerException npe) {
-            System.err.println("Forced NullPointerException caught:");
-            npe.printStackTrace();
-        }
+        // sorter.array = null;
+        // try {
+        //     sorter.getSorted();
+        // } catch(NullPointerException npe) {
+        //     System.err.println("Forced NullPointerException caught:");
+        //     npe.printStackTrace();
+        // }
 
-        // 2. Force an IndexOutOfBoundsException:
-        // Create a new array with fewer than 10 elements and assign it.
-        sorter.array = new int[5];
-        try {
-            sorter.getSorted();
-        } catch(IndexOutOfBoundsException ioobe) {
-            System.err.println("Forced IndexOutOfBoundsException caught:");
-            ioobe.printStackTrace();
-        }
+        // // 2. Force an IndexOutOfBoundsException:
+        // // Create a new array with fewer than 10 elements and assign it.
+        // sorter.array = new int[5];
+        // try {
+        //     sorter.getSorted();
+        // } catch(IndexOutOfBoundsException ioobe) {
+        //     System.err.println("Forced IndexOutOfBoundsException caught:");
+        //     ioobe.printStackTrace();
+        // }
 
-        // Finally, dispose of the array.
-        sorter.array = null;
-        System.out.println("Array disposed.");
+        // // Finally, dispose of the array.
+        // sorter.array = null;
+        // System.out.println("Array disposed.");
     }
 }
