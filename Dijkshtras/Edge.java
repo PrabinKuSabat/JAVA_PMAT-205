@@ -83,6 +83,14 @@ public class Edge {
         return this.weight;
     }
 
+    /**Gets the weight of the Edge with source and destination. 
+     * 
+     * @return Source, destination and weight.
+    */
+    public String getDestWeightString(){
+        return  "Desination:    " + this.destination.toString() + "     Weight:    " +  this.weight.toString();
+    }
+
     /**
      * Updates the id of the edge by prompting the user for a new id.
      */
@@ -120,8 +128,34 @@ public class Edge {
      */
     @Override
     public String toString() {
-        return "Id: " + id + "\n    " + "Source: " + source.toString() + "\n   "
-                + "Destination: " + destination.toString() + "\n"
+        return "Id: " + id + "\n    " + "Source:         " + source.toString() + "\n    "
+                + "Destination:    " + destination.toString() + "\n    "
                 + "Weight: " + weight;
+    }
+
+    /**
+     * Overrides the hashCode method from the Object class to generate a hash code for the node.
+     * 
+     * @return The hash code generated from the edge's id, source, destination, weight.
+     */
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(id, source,destination,weight);
+    }
+
+    /**
+     * Overrides the equals method from the Object class to check if two edges are equal.
+     *
+     * @param obj The object to compare with.
+     * @return True if the nodes have the same id and name, false otherwise.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Edge n = (Edge) obj;
+        return id.equals(n.id) && source.equals(n.source) 
+                && destination.equals(n.destination) && weight.equals(n.weight);
     }
 }

@@ -42,7 +42,11 @@ public class Graph {
         } while (Validator.getString("Do you want to continue? (y/N)").equalsIgnoreCase("y"));
 
         do {
-            addEdge();
+            try {
+                addEdge();
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
         } while (Validator.getString("Do you want to continue? (y/N)").equalsIgnoreCase("y"));
     }
 
@@ -61,24 +65,76 @@ public class Graph {
      * Adds a new edge to the graph.
      */
     public void addEdge() {
-        Node source;
-        String id = Validator.getString("Please enter the Edge id: ");
-        do{
-            source = new Node();
-        }while(!vertices.contains(source));
-        Node destination;
-        do{
-            destination = new Node();
-        }while(!vertices.contains(destination));
+        Edge edgeToAdd = null;
+        String id;
+        Node source = null;
+        boolean done = false;
+        Node destination = null;
         int weight;
         do{
-         weight = Validator.getInt("Please enter the edge weight: ");
-        }while(weight <= 0);
-        try {
-            this.edges.add(new Edge());
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            if(done == true){
+                System.out.println("Edge already exists. \n Re-enter again.");
+            }
+            else{
+                // Check if the id already exists in the graph
+                do {
+                    id = Validator.getString("Please enter the Edge id: ");
+                    boolean idExists = false;
+
+                    // Loop through the list of edges to check for duplicate ids
+                    for (Edge e : edges) {
+                        if (e.getId().equals(id)) {
+                            System.out.println("An edge with this id already exists. \n Please enter a new id.");
+                            idExists = true;
+                            break;
+                        }
+                    }
+
+                    // Continue prompting for a new id if one already exists
+                    if (!idExists) {
+                        break;
+                    }
+                } while (true);
+                do{
+                    do{
+                        System.out.println("Source: ");
+                        source = new Node();
+                    }while(!vertices.contains(source));
+                    do{
+                        System.out.println("Destination: ");
+                        destination = new Node();
+                    }while(!vertices.contains(destination));
+                    boolean connectionExists = false;
+
+                    // Loop through the list of edges to check for duplicate ids
+                    for (Edge e : edges) {
+                        if (e.getSource().equals(source) && e.getDestination().equals(destination)) {
+                            System.out.println("An edge with same connection already exists. \n Please make a new connection.");
+                            connectionExists = true;
+                            break;
+                        }
+                    }
+
+                    // Continue prompting for a new id if one already exists
+                    if (!connectionExists) {
+                        break;
+                    }
+                }while(true);
+                    do{
+                    weight = Validator.getInt("Please enter the edge weight: ");
+                }while(weight <= 0);
+                try {
+                    edgeToAdd = new Edge(id,source,destination,weight);
+                } catch (IllegalArgumentException e) {
+                    e.printStackTrace();
+                }
+            }
+            done = true;
+        }while(edges.contains(edgeToAdd));
+        if(edgeToAdd == null){
+            throw new NullPointerException("New edge has not been created in addEdge.");
         }
+        this.edges.add(edgeToAdd);
     }
 
     /**
@@ -86,6 +142,7 @@ public class Graph {
      */
     public void print() {
         printVertices();
+        System.out.println("\n\n");
         printEdges();
     }
 

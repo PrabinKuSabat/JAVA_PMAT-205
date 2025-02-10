@@ -95,7 +95,7 @@ public class DijkstraAlgorithm {
     public LinkedList<Node> getPath(Node target) throws RuntimeException {
         LinkedList<Node> path = new LinkedList<>();
         if (!predecessors.containsKey(target) && distances.get(target) == INFINITY) {
-            throw new RuntimeException("No path exists from source to target.");
+            throw new RuntimeException("No path exists from source to target " + target.getId() + ".\n");
         }
         Node step = target;
         path.addFirst(step);
@@ -104,6 +104,21 @@ public class DijkstraAlgorithm {
             path.addFirst(step);
         }
         return path;
+    }
+
+    /** Finds and returns the neighbours of the given node.
+     * 
+     * @param centerNode whose neighbours are required.
+     * @return linked list of path to neighbours, of the given node.
+     */
+    public LinkedList<Edge> getNeighbours(Node centerNode) {
+        LinkedList<Edge> pathToNeighbours = new LinkedList<>();
+        for(Edge edge : graph.getEdges()) {
+            if(edge.getSource().equals(centerNode)) {
+                pathToNeighbours.add(edge);
+            }
+        }
+        return pathToNeighbours;
     }
 
 

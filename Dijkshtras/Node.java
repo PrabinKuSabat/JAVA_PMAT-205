@@ -106,6 +106,6 @@ public class Node {
      */
     @Override
     public String toString() {
-        return "Id: " + id + "\n" + "Name: " + name;
+        return "Id: " + id + "    " + "Name: " + name;
     }
 }
