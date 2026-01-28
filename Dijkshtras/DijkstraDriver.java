@@ -16,11 +16,11 @@ public class DijkstraDriver {
         LinkedList<Node> vertices = new LinkedList<>();
         LinkedList<Edge> edges = new LinkedList<>();
         Random random = new Random(12345);
-        int noOfNodes = 20;
-        int maxEdges = 20*(20-1);
+        final int noOfNodes = 20;
+        final int maxEdges = noOfNodes*(noOfNodes-1);
 
         // Automatically adds nodes
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < noOfNodes; i++) {
             id = Integer.toString(i);  // Assigns id as a string representation of the loop index.
             name = "Node_" + i;        // Assigns a name for the node, e.g., "Node_1", "Node_2", etc.
             
