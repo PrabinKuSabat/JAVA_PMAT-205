@@ -16,6 +16,8 @@
 
 This repository contains all Java lab session source code, exercises, and assignments for **PMAT-205 — Object-Oriented Programming with Java**. Each folder represents a specific lab session, named with the date and topic covered, forming a chronological learning path through core Java concepts.
 
+> This coursework is part of **PMAT-205**, offered by the **Department of Mathematics and Computer Science** at [Sri Sathya Sai Institute of Higher Learning (SSSIHL)](https://www.sssihl.edu.in), Prasanthi Nilayam (Puttaparthi).
+
 ---
 
 ## 🗂️ Topic Index
@@ -103,3 +105,16 @@ Algorithms — Dijkstra's (Bonus)
 ## 👨‍💻 Author
 
 **Prabin Kumar Sabat** · [prabins.vercel.app](https://prabins.vercel.app) · [GitHub @PrabinKuSabat](https://github.com/PrabinKuSabat)
+
+---
+
+<div align="center">
+  <br/>
+  <a href="https://www.sssihl.edu.in" target="_blank" rel="noopener noreferrer">
+    <img src="assets/sssihl-logo.png" alt="Sri Sathya Sai Institute of Higher Learning" width="140" />
+    <br/>
+    <b>Sri Sathya Sai Institute of Higher Learning</b>
+  </a>
+  <br/>
+  <sub>Prasanthi Nilayam (Puttaparthi) — Department of Mathematics and Computer Science</sub>
+</div>
